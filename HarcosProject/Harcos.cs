@@ -114,6 +114,10 @@ namespace HarcosProject
                 this.eletero = this.MaxEletero;
 
             }
+            else if (this.eletero > this.MaxEletero)
+            {
+                this.eletero = this.MaxEletero;
+            }
 
         }
         public override string ToString()
