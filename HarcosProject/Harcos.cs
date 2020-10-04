@@ -54,6 +54,47 @@ namespace HarcosProject
 
         public void MegKuzd(Harcos masikharcos) 
         {
+            if (this.nev == masikharcos.nev)
+            {
+                Console.WriteLine("A két harcos egy és ugyan az .");
+            }
+            else if (this.eletero == 0 || masikharcos.eletero == 0)
+            {
+                Console.WriteLine("A harcosnak elfogyott az életereje");
+            }
+            bool masikharcosTamadas = true;
+            while (this.eletero > 0 && masikharcos.eletero > 0)
+            {
+                if (masikharcosTamadas)
+                {
+                    masikharcos.eletero -= this.Sebzes;
+                }
+                else 
+                {
+                    this.eletero -= masikharcos.Sebzes;
+                }
+                masikharcosTamadas = !masikharcosTamadas;
+
+                if (this.eletero != 0)
+                {
+                    this.tapasztalat += 5;
+                }  
+                if (masikharcos.eletero != 0)
+                {
+                    masikharcos.tapasztalat += 5;
+                }
+                if (this.eletero == 0)
+                {
+                    masikharcos.tapasztalat += 10;
+                } 
+                if (masikharcos.eletero == 0)
+                {
+                   this.tapasztalat += 10;
+                }
+
+
+            }
+
         }
         public void Gyogyul()
         { 
