@@ -16,7 +16,28 @@ namespace HarcosProject
         private int alapSzebzés;
 
         public Harcos(string nev, int statuszSablon)
-            { 
+            {
+            this.nev = nev;
+            this.szint = 1;
+            this.tapasztalat = 0;
+
+            if (statuszSablon == 1 )
+            {
+                this.alapEletero = 15; this.alapSzebzés = 3;
+            }
+            else if (statuszSablon == 2 )
+            {
+                this.alapEletero = 12; this.alapSzebzés = 4;
+            } 
+            else if (statuszSablon == 3 )
+            {
+                this.alapEletero = 8; this.alapSzebzés = 5;
+            }
+            
+            this.eletero = MaxEletero;
+
+
+
 
         }
 
