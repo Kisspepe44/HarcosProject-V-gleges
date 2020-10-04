@@ -15,7 +15,7 @@ namespace HarcosProject
         static void Main(string[] args)
         {
             beOlvas();
-
+            menet();
 
         }
 
@@ -61,7 +61,14 @@ namespace HarcosProject
 
             Harcos bekertHarcos = new Harcos(nev,statusz);
 
-           
+            Console.WriteLine();
+            Console.WriteLine("A ön által megadott harcos adatai: \n" + bekertHarcos);
+            Console.WriteLine();
+            Console.WriteLine("A többi harcos karakter és adataik: ");
+            for (int i = 0; i < harcosok.Count; i++)
+            {
+                Console.WriteLine((i+1)+"."+harcosok[i]);
+            }
 
         
         }
