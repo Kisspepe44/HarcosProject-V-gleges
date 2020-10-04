@@ -95,9 +95,26 @@ namespace HarcosProject
 
             }
 
+
+
+
         }
         public void Gyogyul()
-        { 
+        {
+            if (this.eletero == 0)
+            {
+                this.eletero = this.MaxEletero;
+            }
+            else if (this.eletero < MaxEletero)
+            {
+                this.eletero += 3 + this.szint;
+            }
+            if (this.eletero > this.MaxEletero)
+            {
+                this.eletero = this.MaxEletero;
+
+            }
+
         }
         public override string ToString()
         {
