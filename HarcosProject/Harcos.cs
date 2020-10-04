@@ -23,11 +23,12 @@ namespace HarcosProject
         public string Nev { get => nev; set => nev = value; }
         public int Szint { get => szint; set => szint = value; }
         public int Tapasztalat { get => tapasztalat; set => tapasztalat = value; }
+        public int Sebzes { get => alapSzebzés + szint;  }
         public int Eletero { get => eletero; set => eletero = value; }
         public int AlapEletero { get => alapEletero;  }
         public int AlapSzebzés { get => alapSzebzés;  }
-        public int SzintLepeshez { get => ;  }
-        public int MaxEletero { get => ;  }
+        public int SzintLepeshez { get => 10 + szint * 5 ;  }
+        public int MaxEletero { get => alapEletero + szint * 3 ;  }
 
 
         public void MegKuzd(Harcos masikharcos) 
