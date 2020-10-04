@@ -50,5 +50,22 @@ namespace HarcosProject
         
         }
 
+        public static void menet()
+        {
+            Console.WriteLine("Kérem adja meg a harcosa nevét:");
+            string nev = Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("Kérem adja meg a harcosa státuszát(1-3):");
+            int statusz = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+
+            Harcos bekertHarcos = new Harcos(nev,statusz);
+
+           
+
+        
+        }
+
+
     }
 }
