@@ -56,6 +56,7 @@ namespace HarcosProject
             string nev = Console.ReadLine();
             Console.WriteLine();
             Console.WriteLine("Kérem adja meg a harcosa státuszát(1-3):");
+
             int statusz = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
 
@@ -79,7 +80,7 @@ namespace HarcosProject
             Console.WriteLine("c) Kilép");
 
             string valasz = "";
-
+            int kor = 0;
 
             while (!(valasz.Equals("a") || valasz.Equals("b") || valasz.Equals("c")))
             {
@@ -87,7 +88,34 @@ namespace HarcosProject
                 valasz = Console.ReadLine();
             }
 
+            if (valasz == "a")
+            {
+                kor++;
+                int harcol;
+                Console.WriteLine();
+                Console.WriteLine("Kérem adja meg melyik ellenféllel szeretne harcolni.");
+                Console.WriteLine();
+                for (int i = 0; i < harcosok.Count; i++)
+                {
+                    Console.WriteLine((i+1) + ") " + harcosok[i]);
+                }
+                Console.WriteLine();
+                while (!(int.TryParse(Console.ReadLine(),out harcol)))
+                {
 
+                    Console.WriteLine("A ellenfelet nem a sorszáma alapján adta meg kérem adja meg úrja");
+                }
+                while (harcol>harcosok.Count || harcol<0)
+                {
+                    Console.WriteLine("Kérem a listából válasszon harcost a sorszáma alapján.");
+                    while (!(int.TryParse(Console.ReadLine(), out harcol)))
+                    {
+
+                        Console.WriteLine("A ellenfelet nem a sorszáma alapján adta meg kérem adja meg úrja");
+                    }
+                }
+
+            }
 
 
         }
