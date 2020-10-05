@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HarcosProject
@@ -115,7 +116,63 @@ namespace HarcosProject
                     }
                 }
 
+                bekertHarcos.MegKuzd(harcosok[harcol - 1]);
+
+                if (bekertHarcos.Eletero <= 0)
+                {
+                    Console.WriteLine("VEsztettél");
+
+                }
+                else 
+                {
+                    Console.WriteLine("Nyertél");
+                }
+
+                if (kor%3 == 0)
+                {
+                    Console.WriteLine("A következő ellenfeled:");
+                    Random rnd = new Random();
+                    int rndHarcos = rnd.Next(1,harcosok.Count);
+                    Console.WriteLine(harcosok[rndHarcos]);
+                    Console.WriteLine();
+                    bekertHarcos.MegKuzd(harcosok[rndHarcos - 1]);
+                    if (bekertHarcos.Eletero <= 0)
+                    {
+                        Console.WriteLine("VEsztettél");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nyertél");
+                    }
+                    for (int i = 0; i < harcosok.Count; i++)
+                    {
+                        harcosok[i].Gyogyul();
+
+                    }
+                    bekertHarcos.Gyogyul();
+
+                }
+                Console.ReadKey();
             }
+
+            else if (valasz == "b")
+            {
+                bekertHarcos.Gyogyul();
+                for (int i = 0; i < harcosok.Count; i++)
+                {
+                    harcosok[i].Gyogyul();
+
+                }
+            }
+            else if (valasz == "c")
+            {
+                Console.WriteLine("Köszönjük a játékot.");
+                Thread.Sleep(3000);
+                Environment.Exit(0);
+
+            }
+           
 
 
         }
