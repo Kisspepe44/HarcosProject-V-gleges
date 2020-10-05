@@ -70,7 +70,26 @@ namespace HarcosProject
                 Console.WriteLine((i+1)+"."+harcosok[i]);
             }
 
-        
+
+            Console.WriteLine();
+            Console.WriteLine("Kérem adja meg mi a következő lépés:");
+            Console.WriteLine();
+            Console.WriteLine("a) Megküzdeni egy harcossal.");
+            Console.WriteLine("b) Gyógyul");
+            Console.WriteLine("c) Kilép");
+
+            string valasz = "";
+
+
+            while (!(valasz.Equals("a") || valasz.Equals("b") || valasz.Equals("c")))
+            {
+                Console.WriteLine("Kérem adjon meg egy létező menüpontot!");
+                valasz = Console.ReadLine();
+            }
+
+
+
+
         }
 
 
