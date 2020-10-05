@@ -61,7 +61,7 @@ namespace HarcosProject
             int statusz = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
 
-            Harcos bekertHarcos = new Harcos(nev,statusz);
+            Harcos bekertHarcos = new Harcos(nev, statusz);
 
             Console.WriteLine();
             Console.WriteLine("A ön által megadott harcos adatai: \n" + bekertHarcos);
@@ -69,7 +69,7 @@ namespace HarcosProject
             Console.WriteLine("A többi harcos karakter és adataik: ");
             for (int i = 0; i < harcosok.Count; i++)
             {
-                Console.WriteLine((i+1)+"."+harcosok[i]);
+                Console.WriteLine((i + 1) + "." + harcosok[i]);
             }
 
 
@@ -82,60 +82,44 @@ namespace HarcosProject
 
             string valasz = "";
             int kor = 0;
-
-            while (!(valasz.Equals("a") || valasz.Equals("b") || valasz.Equals("c")))
+            while (!(valasz == "c"))
             {
-                Console.WriteLine("Kérem adjon meg egy létező menüpontot!");
                 valasz = Console.ReadLine();
-            }
-
-            if (valasz == "a")
-            {
-                kor++;
-                int harcol;
-                Console.WriteLine();
-                Console.WriteLine("Kérem adja meg melyik ellenféllel szeretne harcolni.");
-                Console.WriteLine();
-                for (int i = 0; i < harcosok.Count; i++)
+                while (!(valasz.Equals("a") || valasz.Equals("b") || valasz.Equals("c")))
                 {
-                    Console.WriteLine((i+1) + ") " + harcosok[i]);
+                    Console.WriteLine("Kérem adjon meg egy létező menüpontot!");
+                    valasz = Console.ReadLine();
                 }
-                Console.WriteLine();
-                while (!(int.TryParse(Console.ReadLine(),out harcol)))
-                {
 
-                    Console.WriteLine("A ellenfelet nem a sorszáma alapján adta meg kérem adja meg úrja");
-                }
-                while (harcol>harcosok.Count || harcol<0)
+                if (valasz == "a")
                 {
-                    Console.WriteLine("Kérem a listából válasszon harcost a sorszáma alapján.");
+                    kor++;
+                    int harcol;
+                    Console.WriteLine();
+                    Console.WriteLine("Kérem adja meg melyik ellenféllel szeretne harcolni.");
+                    Console.WriteLine();
+                    for (int i = 0; i < harcosok.Count; i++)
+                    {
+                        Console.WriteLine((i + 1) + ") " + harcosok[i]);
+                    }
+                    Console.WriteLine();
                     while (!(int.TryParse(Console.ReadLine(), out harcol)))
                     {
 
                         Console.WriteLine("A ellenfelet nem a sorszáma alapján adta meg kérem adja meg úrja");
                     }
-                }
+                    while (harcol > harcosok.Count || harcol < 0)
+                    {
+                        Console.WriteLine("Kérem a listából válasszon harcost a sorszáma alapján.");
+                        while (!(int.TryParse(Console.ReadLine(), out harcol)))
+                        {
 
-                bekertHarcos.MegKuzd(harcosok[harcol - 1]);
+                            Console.WriteLine("A ellenfelet nem a sorszáma alapján adta meg kérem adja meg úrja");
+                        }
+                    }
 
-                if (bekertHarcos.Eletero <= 0)
-                {
-                    Console.WriteLine("VEsztettél");
+                    bekertHarcos.MegKuzd(harcosok[harcol - 1]);
 
-                }
-                else 
-                {
-                    Console.WriteLine("Nyertél");
-                }
-
-                if (kor%3 == 0)
-                {
-                    Console.WriteLine("A következő ellenfeled:");
-                    Random rnd = new Random();
-                    int rndHarcos = rnd.Next(1,harcosok.Count);
-                    Console.WriteLine(harcosok[rndHarcos]);
-                    Console.WriteLine();
-                    bekertHarcos.MegKuzd(harcosok[rndHarcos - 1]);
                     if (bekertHarcos.Eletero <= 0)
                     {
                         Console.WriteLine("VEsztettél");
@@ -145,38 +129,61 @@ namespace HarcosProject
                     {
                         Console.WriteLine("Nyertél");
                     }
+
+                    if (kor % 3 == 0)
+                    {
+                        Console.WriteLine("A következő ellenfeled:");
+                        Random rnd = new Random();
+                        int rndHarcos = rnd.Next(1, harcosok.Count);
+                        Console.WriteLine(harcosok[rndHarcos]);
+                        Console.WriteLine();
+                        bekertHarcos.MegKuzd(harcosok[rndHarcos - 1]);
+                        if (bekertHarcos.Eletero <= 0)
+                        {
+                            Console.WriteLine("VEsztettél");
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nyertél");
+                        }
+                        for (int i = 0; i < harcosok.Count; i++)
+                        {
+                            harcosok[i].Gyogyul();
+
+                        }
+                        bekertHarcos.Gyogyul();
+
+                    }
+                    Console.ReadKey();
+                }
+
+                else if (valasz == "b")
+                {
+                    bekertHarcos.Gyogyul();
                     for (int i = 0; i < harcosok.Count; i++)
                     {
                         harcosok[i].Gyogyul();
 
                     }
-                    bekertHarcos.Gyogyul();
-
                 }
-                Console.ReadKey();
-            }
-
-            else if (valasz == "b")
-            {
-                bekertHarcos.Gyogyul();
-                for (int i = 0; i < harcosok.Count; i++)
+                else if (valasz == "c")
                 {
-                    harcosok[i].Gyogyul();
+                    Console.WriteLine("Köszönjük a játékot.");
+                    Thread.Sleep(3000);
+                    Environment.Exit(0);
 
                 }
-            }
-            else if (valasz == "c")
-            {
-                Console.WriteLine("Köszönjük a játékot.");
-                Thread.Sleep(3000);
-                Environment.Exit(0);
+                Console.WriteLine();
+                Console.WriteLine("Kérem adja meg mi a következő lépés:");
+                Console.WriteLine();
+                Console.WriteLine("a) Megküzdeni egy harcossal.");
+                Console.WriteLine("b) Gyógyul");
+                Console.WriteLine("c) Kilép");
+
 
             }
-           
-
 
         }
-
-
     }
 }
